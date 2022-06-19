@@ -1,0 +1,26 @@
+﻿<div id="unlock-otp-modal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mobile verification</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>A One time password (OTP) has been sent to post creator's mobile no, please check and provide the code. It is valid for next 5 minutes.</p>
+
+                <div class="form-group">
+                    <input type="text" class="form-control" id="unlock-otp-number" />
+                </div>
+
+                <a href="javascript:void();" id="send-again-unlock-otp">Want to send again?</a>
+
+                <input type="hidden" id="unlock-post-id" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="verify-unlock">Unlock</button>
+            </div>
+        </div>
+    </div>
+</div>

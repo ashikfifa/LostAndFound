@@ -1,0 +1,1481 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/lib/intlTelInput/css/intlTelInput.css">
+    <link rel="stylesheet" href="~/css/spinner.css">
+    <link rel="stylesheet" href="~/lib/toastr/toastr.css">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Poppins" />
+    <link rel="icon" href="~/favicon-ifinder.ico" type="image/x-icon">
+    <link rel="stylesheet" href="~/css/post-type-radio-button.css">
+
+    <style>
+        #preview-modal-dialog {
+            max-width: 55%;
+        }
+
+        @@media only screen and (max-width: 600px) {
+            #preview-modal-dialog {
+                max-width: 100%;
+            }
+        }
+
+        .table-striped > tbody > tr:nth-of-type(odd) > * {
+            background-color: #ffffff !important;
+        }
+
+        table.table-bordered.dataTable th:last-child, table.table-bordered.dataTable th:last-child, table.table-bordered.dataTable td:last-child, table.table-bordered.dataTable td:last-child {
+            border: none;
+        }
+
+        table.table-bordered.dataTable {
+            border: none;
+        }
+
+        .table-striped tbody tr:nth-of-type(odd) {
+            background-color: #ffffff !important;
+        }
+
+        .table-striped > tbody > tr:nth-of-type(odd) > * {
+            --bs-table-accent-bg: #ffffff !important;
+        }
+
+        .table {
+            --bs-table-hover-bg: #ffffff !important;
+        }
+
+
+        .viewButton {
+            background-color: black;
+            border: none;
+            color: white;
+            padding: 6px 20px;
+            font-family: Poppins;
+        }
+        @@media only screen and (max-width: 600px) {
+            #post-image {
+                margin-top: 4%;
+            }
+        }
+
+     
+            @@media only screen and (max-width: 600px) {
+                .viewButton {
+                    background-color: black;
+                    border: none;
+                    color: white;
+                    padding: 0px 3px;
+                    font-family: Poppins;
+                    font-size: 12px;
+                }
+            }
+
+            @@media only screen and (max-width: 600px) {
+                .display-4 {
+                    font-size: 28px;
+                }
+            }
+
+            .page-item.active .page-link {
+                z-index: 3;
+                color: #fff;
+                background-color: #ffdd0b;
+                border-color: #ffdd0b;
+            }
+
+            #modals {
+                position: relative;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+            div.dataTables_wrapper div.dataTables_length select {
+                width: -webkit-fill-available;
+                display: none;
+            }
+
+            #posts-table_length {
+                display: none;
+            }
+
+
+
+            #modals .modal-content {
+                height: 170px;
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                pointer-events: auto;
+                background-color: #fff;
+                background-clip: padding-box;
+                border: 1px solid rgba(0,0,0,.2);
+                border-radius: 0.3rem;
+                outline: 0;
+            }
+
+            #verified-upload {
+                color: black;
+                font-weight: 500;
+                background-color: #ffdd0b !important;
+                border: none;
+            }
+
+            #verify-unlock {
+                color: black;
+                font-weight: 500;
+                background-color: #ffdd0b !important;
+                border: none;
+            }
+        .card-body {
+            flex: 1 1 auto;
+            padding: 1rem 1rem;
+            margin-bottom: -1%;
+        }
+            .toast-success {
+                background-color: #51A351;
+            }
+
+            .toast-error {
+                background-color: #BD362F;
+            }
+
+            .animate-charcter {
+                text-transform: uppercase;
+                background-image: linear-gradient( -225deg, #231557 0%, #44107a 29%, #ff1361 67%, #fff800 100% );
+                background-size: auto auto;
+                background-clip: border-box;
+                background-size: 200% auto;
+                color: #fff;
+                background-clip: text;
+                text-fill-color: transparent;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                animation: textclip 2s linear infinite;
+                display: inline-block;
+                font-size: 60px;
+            }
+
+            @@keyframes textclip {
+                to {
+                    background-position: 200% center;
+                }
+            }
+
+            @@media only screen and (max-width: 600px) {
+                #info {
+                    font-size: 7px;
+                }
+            }
+
+            @@media only screen and (max-width: 600px) {
+                .animate-charcter {
+                    text-transform: uppercase;
+                    background-image: linear-gradient( -225deg, #231557 0%, #44107a 29%, #ff1361 67%, #fff800 100% );
+                    background-size: auto auto;
+                    background-clip: border-box;
+                    background-size: 200% auto;
+                    color: #fff;
+                    background-clip: text;
+                    text-fill-color: transparent;
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    animation: textclip 2s linear infinite;
+                    display: inline-block;
+                    font-size: 15px;
+                }
+
+                @@keyframes textclip {
+                    to {
+                        background-position: 200% center;
+                    }
+                }
+            }
+
+            #phone {
+                border-radius: 25px;
+            }
+
+            .title-word {
+                animation: color-animation 4s linear infinite;
+            }
+
+            .title-word-1 {
+                --color-1: #DF8453;
+                --color-2: #3D8DAE;
+                --color-3: #E4A9A8;
+            }
+
+            .title-word-2 {
+                --color-1: #DBAD4A;
+                --color-2: #ACCFCB;
+                --color-3: #17494D;
+            }
+
+            .title-word-3 {
+                --color-1: #ACCFCB;
+                --color-2: #E4A9A8;
+                --color-3: #ACCFCB;
+            }
+
+
+            @@keyframes color-animation {
+                0% {
+                    color: var(--color-1)
+                }
+
+                32% {
+                    color: var(--color-1)
+                }
+
+                33% {
+                    color: var(--color-2)
+                }
+
+                65% {
+                    color: var(--color-2)
+                }
+
+                66% {
+                    color: var(--color-3)
+                }
+
+                99% {
+                    color: var(--color-3)
+                }
+
+                100% {
+                    color: var(--color-1)
+                }
+            }
+
+            .title {
+                font-family: Poppins, sans-serif;
+                font-weight: 600;
+                font-size: 40px;
+                text-transform: uppercase;
+                text-align: center;
+            }
+
+
+            @@media only screen and (max-width: 450px) {
+                .title {
+                    font-family: Poppins, sans-serif;
+                    font-weight: 600;
+                    font-size: 20px;
+                    text-transform: uppercase;
+                    text-align: center;
+                }
+            }
+
+
+            .container-animation {
+                width: 100%;
+                font-weight: 600;
+                text-align: center;
+                font-family: Poppins;
+                word-spacing: -3px !important;
+            }
+
+            .animate {
+                font-size: 26px;
+                margin: 2%;
+            }
+
+                .animate span {
+                    display: inline-block;
+                }
+
+            .seven span {
+                color: black;
+                opacity: 0;
+                transform: translate(-150px, 0) scale(.3);
+                animation: leftRight 5s forwards;
+            }
+
+        @@media only screen and (max-width: 600px) {
+            .report-button {
+                height:90%;
+                width:100%;
+            }
+        }
+
+            @@media only screen and (max-width: 550px) {
+                .seven span {
+                    font-size: 15px;
+                }
+            }
+
+
+            .animate span:nth-of-type(2) {
+                animation-delay: .05s;
+            }
+
+            .animate span:nth-of-type(3) {
+                animation-delay: .1s;
+            }
+
+            .animate span:nth-of-type(4) {
+                animation-delay: .15s;
+            }
+
+            .animate span:nth-of-type(5) {
+                animation-delay: .2s;
+            }
+
+            .animate span:nth-of-type(6) {
+                animation-delay: .25s;
+            }
+
+            .animate span:nth-of-type(7) {
+                animation-delay: .3s;
+            }
+
+            .animate span:nth-of-type(8) {
+                animation-delay: .35s;
+            }
+
+            .animate span:nth-of-type(9) {
+                animation-delay: .4s;
+            }
+
+            .animate span:nth-of-type(10) {
+                animation-delay: .45s;
+            }
+
+            .animate span:nth-of-type(11) {
+                animation-delay: .5s;
+            }
+
+            .animate span:nth-of-type(12) {
+                animation-delay: .55s;
+            }
+
+            .animate span:nth-of-type(13) {
+                animation-delay: .6s;
+            }
+
+            .animate span:nth-of-type(14) {
+                animation-delay: .65s;
+            }
+
+            .animate span:nth-of-type(15) {
+                animation-delay: .7s;
+            }
+
+            .animate span:nth-of-type(16) {
+                animation-delay: .75s;
+            }
+
+            .animate span:nth-of-type(17) {
+                animation-delay: .8s;
+            }
+
+            .animate span:nth-of-type(18) {
+                animation-delay: .85s;
+            }
+
+            .animate span:nth-of-type(19) {
+                animation-delay: .9s;
+            }
+
+            .animate span:nth-of-type(20) {
+                animation-delay: .95s;
+            }
+
+
+            /* Animation One */
+
+            .one span {
+                color: #24a8e6;
+                opacity: 0;
+                transform: translate(-150px, -50px) rotate(-180deg) scale(3);
+                animation: revolveScale .4s forwards;
+            }
+
+            @@keyframes revolveScale {
+                60% {
+                    transform: translate(20px, 20px) rotate(30deg) scale(.3);
+                }
+
+                100% {
+                    transform: translate(0) rotate(0) scale(1);
+                    opacity: 1;
+                }
+            }
+
+
+
+            @@keyframes ballDrop {
+                60% {
+                    transform: translate(0, 20px) rotate(-180deg) scale(.5);
+                }
+
+                100% {
+                    transform: translate(0) rotate(0deg) scale(1);
+                    opacity: 1;
+                }
+            }
+
+
+            /* Animation Three */
+
+
+            .three span {
+                color: #b10e81;
+                opacity: 0;
+                transform: translate(-300px, 0) scale(0);
+                animation: sideSlide .5s forwards;
+            }
+
+            @@keyframes sideSlide {
+                60% {
+                    transform: translate(20px, 0) scale(1);
+                    color: #b10e81;
+                }
+
+                80% {
+                    transform: translate(20px, 0) scale(1);
+                    color: #b10e81;
+                }
+
+                99% {
+                    transform: translate(0) scale(1.2);
+                    color: #00f0ff;
+                }
+
+                100% {
+                    transform: translate(0) scale(1);
+                    opacity: 1;
+                    color: #b10e81;
+                }
+            }
+
+
+            /* Animation Four */
+
+
+            .four span {
+                color: #8d6a00;
+                opacity: 0;
+                transform: translate(0, -100px) rotate(360deg) scale(0);
+                animation: revolveDrop .3s forwards;
+            }
+
+
+            @@keyframes revolveDrop {
+                30% {
+                    transform: translate(0, -50px) rotate(180deg) scale(1);
+                }
+
+                60% {
+                    transform: translate(0, 20px) scale(.8) rotate(0deg);
+                }
+
+                100% {
+                    transform: translate(0) scale(1) rotate(0deg);
+                    opacity: 1;
+                }
+            }
+
+
+            /* Animation Five */
+
+
+            .five span {
+                color: #dd3f0f;
+                opacity: 0;
+                transform: translate(0, -100px) rotate(360deg) scale(0);
+                animation: dropVanish .5s forwards;
+            }
+
+
+            @@keyframes dropVanish {
+                30% {
+                    transform: translate(0, -50px) rotate(180deg) scale(1);
+                }
+
+                50% {
+                    transform: translate(0, 20px) scale(.8) rotate(0deg);
+                    opacity: 1;
+                }
+
+                80% {
+                    transform: translate(-100px, -100px) scale(1.5) rotate(-180deg);
+                    opacity: 0;
+                }
+
+                100% {
+                    transform: translate(0) scale(1) rotate(0deg);
+                    opacity: 1;
+                }
+            }
+
+
+
+            /* Animation Six */
+
+
+            .six span {
+                color: #ddb40f;
+                opacity: 0;
+                transform: rotate(-180deg) translate(150px, 0);
+                animation: twister .5s forwards;
+            }
+
+
+            @@keyframes twister {
+                10% {
+                    opacity: 1;
+                }
+
+                100% {
+                    transform: rotate(0deg) translate(0);
+                    opacity: 1;
+                }
+            }
+
+
+
+            /* Animation Seven */
+
+
+
+
+            @@keyframes leftRight {
+                40% {
+                    transform: translate(50px, 0) scale(.7);
+                    opacity: 1;
+                    color: #348c04;
+                }
+
+                60% {
+                    color: #0f40ba;
+                }
+
+                80% {
+                    transform: translate(0) scale(2);
+                    opacity: 0;
+                }
+
+                100% {
+                    transform: translate(0) scale(1);
+                    opacity: 1;
+                }
+            }
+
+            #iconPM {
+                display: inline-block;
+                animation: blink 8s ease-in infinite;
+            }
+
+            @@keyframes blink {
+                from, to {
+                    opacity: 1
+                }
+
+                50% {
+                    opacity: 0
+                }
+            }
+
+
+    </style>
+
+}
+
+<div class="spinner" style="display:none">
+    <div class="center-div">
+        <div class="inner-div">
+            <div class="loader"></div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="text-center pt-3" style="background:#ffdd0b">
+
+
+    <h1 class="display-4" style="font-weight:700;font-family: Poppins;margin-top:3%">Find Anyone. Anywhere</h1>
+    @*<p style="font-family: Poppins; font-size: 25px;">Report or Find a Missing Person</p>*@
+    <div class="container-animation">
+        <div class="animate seven">
+            <span>R</span><span>e</span><span>p</span><span>o</span><span>r</span><span>t</span> &nbsp;
+            <span>o</span><span>r</span> &nbsp; <span>F</span><span>i</span><span>n</span><span>d</span> &nbsp; <span>a</span> &nbsp; <span>M</span><span>i</span><span>s</span><span>s</span><span>i</span><span>n</span><span>g</span>  &nbsp;  <span>P</span><span>e</span><span>r</span><span>s</span><span>o</span><span>n</span>
+
+        </div>
+        </div>
+
+
+        <div class="col-sm-12 text-center">
+            <button id="start-post-button" style="padding-left: 14%; padding-right: 12%; padding-top: 3px; padding-bottom: 2px; font-family: Poppins; border-radius: 30px; border: none; margin-bottom: 5%; margin-top: 3%; background-color: #111111; font-weight: 600; color: white"> START A POST &nbsp;&nbsp; <img id="iconPM" src="https://img.icons8.com/external-flatart-icons-lineal-color-flatarticons/64/000000/external-touch-device-and-development-flatart-icons-lineal-color-flatarticons.png" height="20%" width="20%" /></button>
+        </div>
+    </div>
+
+
+    <div id="otp-modal" class="modal" tabindex="-1" role="dialog" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Verification</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>An (OTP) has been sent to your mobile <span id="otp-phone"></span>, please check and verify the code.</p>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="otp-number" />
+                    </div>
+
+                    <a href="javascript:void();" id="send-again-otp">Resend OTP?</a>
+
+                    <input type="hidden" id="post-id" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="verified-upload">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    
+    <div id="report-modal" class="modal fade" tabindex="-1" role="dialog" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog" id="report-modal-dialog" role="document">
+            <div class="modal-content">
+                <hr style="margin-bottom: -1px" />
+                <div class="modal-header">
+
+                    <h5 class="modal-title" style="color:#125a31;font-weight:800;font-family:Poppins">Share Your Concern</h5>
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p style="color:#125a31;font-weight:500;font-family:Poppins">If you would like to share your concerns about this post, please choose the option below. At the earliest, we will review it and take the necessary steps.</p><br />
+                    <img width="5%" height="5%" src="~/images/mismatch.png" />
+                    <input type="radio" id="do-not-resemble" name="fav_language" value="Do-not-resemble">
+                    <label for="do-not-resemble"> Images do not resemble the original images</label><br>
+
+                    <img width="5%" height="5%" src="~/images/offensive.png" />
+                    <input type="radio" id="offensive" name="fav_language" value="Offensive">
+                    <label for="offensive">Religiously/Personally Offensive Post</label><br>
+
+                    <img width="5%" height="5%" src="~/images/politicalissue.png" />
+                    <input type="radio" id="political" name="fav_language" value="Political">
+                    <label for="political">Points to a Political Issue</label><br>
+
+                    <img width="5%" height="5%" src="~/images/abusiveword.png" />
+                    <input type="radio" id="abusive" name="fav_language" value="Abusive">
+                    <label for="abusive">Contains Abusive Words/Contents</label> <br>
+
+                    <img width="5%" height="5%" src="~/images/women.png" />
+                    <input type="radio" id="women" name="fav_language" value="Women">
+                    <label for="women">Violence Against Women</label> <br />
+
+                    <img width="4%" height="4%" src="~/images/others.png" />
+                    <input type="radio" id="others" name="fav_language" value="Others">
+                    <label for="others">Others</label>
+
+                    <div class="modal-footer">
+
+                        <button style="color: white; background-color: red; border: none; font-weight: 500" type="button" class="btn btn-primary" data-dismiss="modal">Cancel</span></button>
+                        <button style="color:black;background-color:#ffdd0b;border:none;font-weight:500" type="button" class="btn btn-primary" id="unlock-button">Submit</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="preview-modal" class="modal fade" tabindex="-1" role="dialog" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog" id="preview-modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                            <h5 class="modal-title" style="color:#125a31;font-weight:800;font-family:Poppins">Matching Photos</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        
+                    </div>
+                <div class="modal-body">
+                    <h5 style="color:#125a31;font-weight:500;font-family:Poppins">To find out who posted these photos, please unlock his/her phone number.</h5>
+
+                    <br />
+
+                    <div id="matching-images-container" class="row">
+
+                    </div>
+
+                    <input type="hidden" id="matched-post-id-list" />
+                    <input type="hidden" id="preview-post-id" />
+                </div>
+                <div class="modal-footer">
+                    
+                    <button style="color:black;background-color:#ffdd0b;border:none;font-weight:500" type="button" class="btn btn-primary" id="unlock-button">Unlock</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div id="postingSelectionModal" class="modal fade" tabindex="-1" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        ×
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h4 class="modal-title" style="">
+                        Create a Post
+                    </h4>
+                    <br />
+                    <div class="form-group">
+
+                        <textarea maxlength="50" id="post-comment" class="form-control w-100 p-3" placeholder="Would you like to say something about the person?"></textarea>
+                    </div>
+
+                    @*<div class="form-group">
+                            <input multiple id="upload-image" type="file" class="form-control" accept="image/*" />
+                        </div>*@
+
+                    <label for="upload-image">
+                        <svg xmlns="http://www.w3.org/2000/svg" cursor="pointer" width="26" height="26" fill="currentColor" class="bi bi-images" viewBox="0 0 16 16">
+                            <path d="M4.502 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
+                            <path d="M14.002 13a2 2 0 0 1-2 2h-10a2 2 0 0 1-2-2V5A2 2 0 0 1 2 3a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v8a2 2 0 0 1-1.998 2zM14 2H4a1 1 0 0 0-1 1h9.002a2 2 0 0 1 2 2v7A1 1 0 0 0 15 11V3a1 1 0 0 0-1-1zM2.002 4a1 1 0 0 0-1 1v8l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094l1.777 1.947V5a1 1 0 0 0-1-1h-10z" />
+
+                        </svg>
+                    </label>
+                    &nbsp; &nbsp; (Upload Images: Max No. of Images - 3)
+
+                    <div class="mt-4 mb-4" id="image-view">
+
+                    </div>
+
+                    <div id="type-selection">
+                        <input type="radio" id="lost-type-select" name="post-type" value="lost">
+                        <label id="lost-type-select-label" for="lost-type-select">This person is missing</label>
+
+                        <input type="radio" id="found-type-select" name="post-type" value="found">
+                        <label id="found-type-select-label" for="found-type-select">Found this person</label>
+                    </div>
+
+
+                    <button id="next-button-of-posting-modal" style="float:right;background-color:#ffdd0b;border:none;padding: 3px 28px;font-family:Poppins;font-weight:500" disabled>NEXT</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div id="phoneNumberModal" class="modal fade" tabindex="-1" data-keyboard="false" data-backdrop="static">
+        <div id="modals">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            ×
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="text-center">
+                            <input type="tel" id="phone" placeholder="Phone Number" />
+                        </div>
+                        <button id="post-image" style="float: right; background-color: #ffdd0b; border: none; padding: 3px 28px; font-family: Poppins; font-weight: 500">POST</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="container-fluid" style="margin-top:10px;">
+
+        @*<div class="text-center">
+                <input type="tel" id="phone" placeholder="Phone Number" />
+            </div>*@
+
+        <div class="row">
+            <div class="col-12">
+
+                <p>
+                    @*<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                            Post Image
+                        </button>*@
+
+                </p>
+
+                <div class="collapse" id="collapseExample">
+
+                    <div class="
+                     ">
+                        <div class="card-header">
+                            <h4>Post your lost or found Images</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Upload Image</label>
+                                <input multiple id="upload-image" type="file" class="form-control" accept="image/*" />
+                            </div>
+
+                            <div class="mt-3 mb-3" id="image-view">
+
+                            </div>
+
+                            <div class="form-group">
+                                <label>Comment</label>
+                                <textarea id="post-comment" class="form-control w-100 p-3" placeholder="Write your comment"></textarea>
+                            </div>
+
+                            <button id="post-image" class="btn btn-primary">Post</button>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+
+                <table id="posts-table" class="table table-hover table-bordered table-striped" style="background-color:#ffffff !important">
+                    <thead>
+                        <tr>
+                            <th>
+
+                                <h2 class="title">
+                                    <span class="title-word title-word-1">Searching</span>
+                                    <span class="title-word title-word-2">&</span>
+                                    <span class="title-word title-word-3">Matching</span>
+                                </h2>
+
+                                <hr class="solid">
+                                @*<p style="text-align:center;font-family:Poppins;font-size:35px;font-weight:500;">  Recent Missing Persons </p>*@
+
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tbody>
+                    </tbody>
+                </table>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div id="imageZoomModal" class="modal" tabindex="-1" role="dialog" data-keyboard="false" >
+        <div class="modal-dialog" role="document">
+            <div class="modal-header">
+                
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-content">
+
+                <div class="modal-body">
+                    <img id="enlarge-img" height="100%" width="100%"/>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <div id="unlock-otp-modal" class="modal" tabindex="-1" role="dialog" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Verification</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>An (OTP) has been sent to your mobile <span id="otp-phone"></span>, please check and verify the code.</p>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="unlock-otp-number" />
+                    </div>
+
+                    <a href="javascript:void();" id="send-again-unlock-otp">Resend OTP?</a>
+
+                    <input type="hidden" id="unlock-post-id" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="verify-unlock">Unlock</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*<partial name="_PostModal" />
+        <partial name="_ValidationModal" />
+        <partial name="_OtpModal" />
+        <partial name="_PreviewModal" />
+        <partial name="_UnlockOtpModal" />*@
+
+    <partial name="_ValidationModal" />
+    <partial name="_PostModal" />
+
+    @section Scripts {
+        <script src="~/lib/intlTelInput/js/intlTelInput.js"></script>
+        <script src="~/lib/intlTelInput/js/intlTelInput-jquery.js"></script>
+        <script src="~/lib/toastr/toastr.js"></script>
+
+
+        <script>
+
+            var PostType = {
+                lost: "lost",
+                found: "found"
+            };
+
+
+            $(document).ready(function () {
+
+                $("#type-selection").hide();
+
+                $("#posts-table").DataTable({
+                    "processing": true,
+                    "serverSide": true,
+                    "filter": true,
+                    "ordering": false,
+                    "ajax": {
+                        "url": "/Home/GetPosts",
+                        "type": "POST",
+                        "datatype": "json"
+                    },
+                    "columns": [
+                        {
+                            'data': 'id',
+                            "render": function (data, type, row) {
+                                var status = row.isMatched == true ? "Matched!" : "Searching!";
+
+                                var imageHtml = "";
+
+                                for (let i = 0; i < row.images.length; i++) {
+                                    let image = row.images[i];
+                                    imageHtml += `<div class="col-md-4">
+                                                            <img class="image-zoom" style="width:200px;height:200px" src="${image}" />
+                                                      </div>`;
+                                }
+
+                                var viewButtonHtml = "";
+
+                                if (row.isMatched == true) {
+                                    viewButtonHtml = `<button style="float:right" class="viewButton" post-id="${row.id}">View Matches</button>`;
+                                }
+
+                                var reportContent = "";
+
+                                if (row.postType == PostType.lost) {
+                                    reportContent = "Missing/Lost!"
+                                }
+                                else {
+                                    reportContent = "Found!"
+                                }
+
+                                var html = `<div class="container">   <div class="card" style="margin-top:4%;background-color:#ffdd0b">
+                                                                                                                        <div class="card-header"style="font-weight:700;font-family:poppins">
+                                                                                                                            <div class="row">
+                                                                                                                                <div class="col-4" id="info">
+                                                                                                                                    <span style="background-color: black;color:white" >${row.userPostNumber} </span> <br />
+                                                                                                                                    ${row.date} <br />
+                                                                                                                                    Status: ${reportContent} <br />
+                                                                                                                                    Comment: ${row.comment}
+                                                                                                                                </div>
+                                                                                                                           <div class="col-7">
+                                                                                                                                <h4 class="animate-charcter"> ${status}</h4>
+                                                                                                                          </div>
+                                                                                                                                <div class="col-1">
+                                                                                                                                    ${viewButtonHtml}
+                                                                                                                                </div>
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                        <div class="card-body">
+                                                                                                                            <div class="row" style="position:relative;cursor:pointer; overflow:auto">
+
+                                                                                                                               ${imageHtml}
+                                                                                                                              </div>
+                                                                                                                                    
+                                                                                                                                  <div class="row">
+                                                                                                                                    <div class="col-2"style="margin-top:6px">
+
+                                                                                                                                    <img width="20%" height="90%" style="cursor:pointer" class="report-button" src="/images/report-icon (2).png" />
+                                                                                                                                    </div>
+                                                                                                                                  </div>
+
+                                                                                                                        </div>
+
+                                                                                                                    </div>
+                                                                                                                        </div>`;
+                                return html;
+                            }
+                        }
+                    ]
+                });
+
+                $("#posts-table").on("click", ".viewButton", function () {
+                    var postId = $(this).attr("post-id");
+                    getMatchedImages(postId);
+                });
+
+                $("#phone").intlTelInput({
+                    initialCountry: "bd",
+                    utilsScript: "/lib/intlTelInput/js/utils.js",
+                    separateDialCode: true,
+                });
+
+                $("#post-image").on("click", function () {
+                    let images = document.getElementById('upload-image');
+                    let comment = $("#post-comment").val();
+                    let phone = $("#phone").intlTelInput("getNumber");
+
+                    if (phone == "") {
+                        alert("Please enter your phone number");
+                        return;
+                    }
+
+                    if (images && images.files.length) {
+                        $('#post-type-modal').modal('show');
+                    }
+                    else {
+                        $('#validation-modal').modal('show');
+                    }
+
+                });
+
+                $("#upload-image").on("click", function () {
+                    let input = this;
+                    input.value = null;
+
+                    $("#image-view").html("");
+                    $("#type-selection").hide();
+                    $("#next-button-of-posting-modal").prop("disabled", true);
+                });
+
+                $("#upload-image").on("change", function () {
+                    let input = this;
+                    let length = input.files.length;
+
+                    if (length > 3) {
+                        alert("You can select maximum 3 images");
+                        input.value = null;
+                        return;
+                    }
+
+                    for (let i = 0; i < length; i++) {
+                        readURL(input, i);
+                    }
+
+                    $("#next-button-of-posting-modal").prop("disabled", false);
+
+                    $("#type-selection").show();
+                });
+
+                $("#post-image").on("click", function () {
+                    let type = $("#post-image").attr("post-type");
+
+                    post(type);
+                });
+
+                $("#lost-confirm").on("click", function () {
+                    post(PostType.lost);
+                });
+
+                $("#found-confirm").on("click", function () {
+                    post(PostType.found);
+                });
+
+                $("#verified-upload").on("click", function () {
+                    verifyOtp();
+                });
+
+                $("#send-again-otp").on("click", function () {
+                    sendOtpAgain();
+                });
+
+                $("#send-again-unlock-otp").on("click", function () {
+                    let id = $("#unlock-post-id").val();
+                    sendUnlockOtpAgain(id);
+                });
+
+                $("#unlock-button").on("click", function () {
+                    let id = $("#preview-post-id").val();
+                    sendUnlockOTP(id);
+                });
+
+                $("#verify-unlock").on("click", function () {
+                    let otp = $("#unlock-otp-number").val();
+                    let id = $("#unlock-post-id").val();
+                    let matchedPostIds = $("#matched-post-id-list").val();
+
+                    verifyUnlockOtp(otp, id, matchedPostIds);
+                });
+
+                $("#start-post-button").click(function () {
+                    $("#postingSelectionModal").modal('show');
+                });
+
+              
+
+                $("#posts-table").on("click", ".report-button", function () {
+                    $("#report-modal").modal('show');
+                    
+                });
+
+                
+
+
+                $("#posts-table").on("click", ".image-zoom", function () {
+                    let src = $(this).attr('src');
+                    $("#enlarge-img").attr("src", src);
+                    $("#imageZoomModal").modal('show');
+                });
+
+                $("#next-button-of-posting-modal").click(function () {
+                    if ($("input[type='radio']").is(':checked')) {
+                        let postType = $('input[name="post-type"]:checked').val();
+                        $("#post-image").attr("post-type", postType);
+
+                        $("#phoneNumberModal").modal('show');
+                        $("#postingSelectionModal").modal('hide');
+                    }
+                    else {
+                        $("#type-selection").fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+                    }
+                });
+
+                $("#post-image").click(function () {
+                    $("#otp-modal").modal('show');
+                    $("#phoneNumberModal").modal('hide');
+                });
+
+                function sendOtpAgain() {
+                    let id = $("#post-id").val();
+
+                    $.ajax({
+                        type: "GET",
+                        url: "/Home/GenerateOtpAgain?id=" + id,
+                        beforeSend: function () {
+                            $('.spinner').css('display', 'block');
+                        },
+                        success: function (res) {
+                            if (res.success) {
+                                toastr.success(res.message);
+                            }
+                            else {
+                                toastr.error(res.message);
+                            }
+                        },
+                        error: function (error) {
+                            toastr.error("Error occured, please try again");
+                        },
+                        complete: function () {
+                            $('.spinner').css('display', 'none');
+                        }
+                    });
+                }
+
+                function sendUnlockOTP(id) {
+
+                    $.ajax({
+                        type: "GET",
+                        url: "/Home/GenerateUnlockOtp?id=" + id,
+                        beforeSend: function () {
+                            $('.spinner').css('display', 'block');
+                        },
+                        success: function (res) {
+                            if (res.success) {
+                                toastr.success(res.message);
+
+                                $("#preview-modal").modal('hide');
+
+                                $("#unlock-post-id").val(id);
+
+                                $("#unlock-otp-modal").modal('show');
+                            }
+                            else {
+                                toastr.error(res.message);
+                            }
+                        },
+                        error: function (error) {
+                            toastr.error("Error occured, please try again");
+                        },
+                        complete: function () {
+                            $('.spinner').css('display', 'none');
+                        }
+                    });
+                }
+
+                function sendUnlockOtpAgain(id) {
+
+                    $.ajax({
+                        type: "GET",
+                        url: "/Home/GenerateUnlockOtp?id=" + id,
+                        beforeSend: function () {
+                            $('.spinner').css('display', 'block');
+                        },
+                        success: function (res) {
+                            if (res.success) {
+                                toastr.success(res.message);
+                            }
+                            else {
+                                toastr.error(res.message);
+                            }
+                        },
+                        error: function (error) {
+                            toastr.error("Error occured, please try again");
+                        },
+                        complete: function () {
+                            $('.spinner').css('display', 'none');
+                        }
+                    });
+                }
+
+                function verifyUnlockOtp(otp, id, matchedPostIds) {
+
+                    $.ajax({
+                        type: "GET",
+                        url: "/Home/VerifyUnlockOtp?id=" + id + "&otp=" + otp + "&matchedPostIds=" + matchedPostIds,
+                        beforeSend: function () {
+                            $('.spinner').css('display', 'block');
+                        },
+                        success: function (res) {
+                            if (res.success) {
+                                toastr.success(res.message);
+
+                                $("#unlock-otp-modal").modal('hide');
+                            }
+                            else {
+                                toastr.error(res.message);
+                            }
+                        },
+                        error: function (error) {
+                            toastr.error("Error occured in OTP verification, please try again");
+                        },
+                        complete: function () {
+                            $('.spinner').css('display', 'none');
+                        }
+                    });
+                }
+
+                function verifyOtp() {
+                    let otp = $("#otp-number").val();
+                    let id = $("#post-id").val();
+
+                    $.ajax({
+                        type: "GET",
+                        url: "/Home/VerifyOtp?id=" + id + "&otp=" + otp,
+                        beforeSend: function () {
+                            $('.spinner').css('display', 'block');
+                        },
+                        success: function (res) {
+                            if (res.success) {
+                                toastr.success(res.message);
+                                $("#otp-modal").modal('hide');
+                                uploadImages(id);
+                            }
+                            else {
+                                toastr.error(res.message);
+                                $('.spinner').css('display', 'none');
+                            }
+                        },
+                        error: function (error) {
+                            toastr.error("Error occured in OTP verification, please try again");
+                            $('.spinner').css('display', 'none');
+                        }
+                    });
+                }
+
+                function uploadImages(id) {
+                    let images = document.getElementById('upload-image');
+                    let files = images.files;
+                    let formData = new FormData();
+
+                    formData.append("id", id);
+
+                    for (var i = 0; i != files.length; i++) {
+                        formData.append("images", files[i]);
+                    }
+
+                    $.ajax({
+                        type: "POST",
+                        url: "/Home/UploadPostImages",
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        cache: false,
+                        success: function (res) {
+                            if (res.success) {
+                                toastr.success(res.message);
+
+                                setTimeout(function () {
+                                    window.location.reload();
+                                }, 3000);
+                            }
+                            else {
+                                toastr.error(res.message);
+                            }
+                        },
+                        error: function (error) {
+                            toastr.error("Error occured in image uploading");
+                        },
+                        complete: function () {
+                            $('.spinner').css('display', 'none');
+                        }
+                    });
+
+                }
+
+                function post(postType) {
+                    let formData = new FormData();
+                    let comment = $("#post-comment").val();
+                    let phone = $("#phone").intlTelInput("getNumber");
+
+                    formData.append("type", postType);
+                    formData.append("comment", comment);
+                    formData.append("phone", phone);
+
+                    $.ajax({
+                        type: "POST",
+                        url: "/Home/UserPostCreate",
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        cache: false,
+                        beforeSend: function () {
+                            $('#post-type-modal').modal('hide');
+                            $('.spinner').css('display', 'block');
+                        },
+                        success: function (res) {
+                            $("#post-id").val(res.result.id);
+                            $("#otp-phone").text(phone);
+                            $("#otp-number").val("");
+
+                            $("#otp-modal").modal('show');
+                        },
+                        error: function (error) {
+
+                        },
+                        complete: function () {
+                            $('.spinner').css('display', 'none');
+                        }
+                    });
+
+                }
+
+                function getMatchedImages(id) {
+                    let formData = new FormData();
+
+                    formData.append("id", id);
+
+                    $.ajax({
+                        type: "POST",
+                        url: "/Home/GetMatchedImages",
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        cache: false,
+                        beforeSend: function () {
+                            $('.spinner').css('display', 'block');
+                        },
+                        success: function (res) {
+                            if (res.success) {
+                                //toastr.success(res.message);
+
+                                let imagePaths = [];
+                                for (let i = 0; i < res.result.length; i++) {
+                                    var imagePath = res.result[i].imagePath;
+                                    imagePaths.push(imagePath);
+                                }
+
+                                imagePaths = imagePaths.filter(onlyUnique);
+
+                                var imageHtml = "";
+                                for (let i = 0; i < imagePaths.length; i++) {
+                                    var image = imagePaths[i];
+                                    imageHtml += `<div class="col-md-4">
+                                                                 <img style="width: 100%;height: 100%" src="${image}" />
+                                                                </div>`;
+                                }
+
+                                var postIds = "";
+                                for (let i = 0; i < res.result.length; i++) {
+                                    var matchedId = res.result[i].postId;
+                                    postIds += matchedId;
+
+                                    if (i != res.result.length - 1) {
+                                        postIds += ",";
+                                    }
+                                }
+
+                                $("#matched-post-id-list").val(postIds);
+
+                                $("#matching-images-container").html(imageHtml);
+
+                                $("#preview-post-id").val(id);
+
+                                $("#preview-modal").modal('show');
+                            }
+                            else {
+                                toastr.error(res.message);
+                            }
+                        },
+                        error: function (error) {
+                            toastr.error("Error occured in image uploading");
+                        },
+                        complete: function () {
+                            $('.spinner').css('display', 'none');
+                        }
+                    });
+                }
+
+                function readURL(input, i) {
+
+                    if (input.files && input.files[i]) {
+                        var reader = new FileReader();
+
+                        reader.onload = function (e) {
+                            let html = `<img style="margin-right:10px;" width=245 height=200 src='${e.target.result}' />`;
+
+                            $('#image-view').append(html);
+                        };
+
+                        reader.readAsDataURL(input.files[i]);
+                    }
+                }
+
+                function onlyUnique(value, index, self) {
+                    return self.indexOf(value) === index;
+                }
+
+            });
+
+        </script>
+    }
